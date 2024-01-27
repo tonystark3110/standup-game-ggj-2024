@@ -13,15 +13,9 @@ public class JokeButtonManager : MonoBehaviour
 
     public AnimationClip[] animations;
 
-    //for test
-
-    
-    [SerializeField]
-    public GameObject jokeTest;
-
     public Button buttonPrefab;
 
-    public int numJokesPerRound = 5;
+    public int numJokesPerRound = 2;
 
     private GameObject[] jokeObjects;
 
@@ -38,28 +32,51 @@ public class JokeButtonManager : MonoBehaviour
         jokeObjects = GameObject.FindGameObjectsWithTag("Joke");
 
 
+        //add the joke started and ended events as listeners.
+        foreach (GameObject jokeObject in jokeObjects)
+        {
+            JokeInterface jokeScript = jokeObject.GetComponent<JokeInterface>();
+
+            Debug.Log(jokeScript.onJokeStarted);
+            Debug.Log(jokeScript.onJokeCompleted);
+
+            jokeScript.onJokeStarted.AddListener(HandleJokeStarted);
+            jokeScript.onJokeCompleted.AddListener(HandleJokeCompleted);
+        }
+
+        displayJokes();
+
+    }
+
+
+    private void displayJokes()
+    {
         //creates the appropriate number of buttons and animates them.
         for (int i = 0; i < numJokesPerRound; i++)
         {
-            Button jokeButton = createJokeButton(pickRandomJoke());
+
+            //TODO: figure out how to put each button in separate places on the canvas.
+
+            int randomIndex = pickRandomJoke();
+
+            Button jokeButton = createJokeButton(jokeObjects[randomIndex]);
 
             Animator buttonAnimator = jokeButton.GetComponent<Animator>();
 
-            /*
-            int randomIndex = UnityEngine.Random.Range(0, animations.Length);
+            //for animating the buttons, uncommment this when animation clips are put in
 
+            /*
             AnimationClip clip = animations[randomIndex];
 
             buttonAnimator.Play(clip.name);*/
         }
-
-
     }
+
 
     /**
      * Returns a random joke object from the list of jokes. If all jokes are used up, it will reuse a joke.
      */
-    private GameObject pickRandomJoke()
+    private int pickRandomJoke()
     {
         System.Random random = new System.Random();
 
@@ -78,7 +95,7 @@ public class JokeButtonManager : MonoBehaviour
 
         //add the current joke to the list of jokes already picked
         alreadyPickedIdx.Add(randomNumber);
-        return jokeObjects[randomNumber];
+        return randomNumber;
     }
 
     /**
@@ -114,6 +131,22 @@ public class JokeButtonManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void HandleJokeStarted()
+    {
+        Debug.Log("Joke started handled");
+        foreach (Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+    }
+
+    void HandleJokeCompleted()
+    {
+        Debug.Log("Joke ended handled");
+        displayJokes();
     }
 
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Joke2TestScript : MonoBehaviour, JokeInterface
 {
@@ -8,17 +9,28 @@ public class Joke2TestScript : MonoBehaviour, JokeInterface
 
     public int OccurrenceWeight { get; private set; }
 
+    public UnityEvent onJokeStarted { get; private set; }
+
+    public UnityEvent onJokeCompleted { get; private set; }
+
+
     public GameObject thing;
 
     public Joke2TestScript()
     {
         ButtonText = "lol";
         OccurrenceWeight = 3;
+
+        onJokeStarted = new UnityEvent();
+        onJokeCompleted = new UnityEvent();
     }
 
 
     public void run()
     {
+
+        onJokeStarted.Invoke();
+
         Debug.Log("Joke2 is in fact funnny");
 
         StartCoroutine(Joke2Sequence());
@@ -60,6 +72,7 @@ public class Joke2TestScript : MonoBehaviour, JokeInterface
 
         Debug.Log("Animation completed");
 
+        onJokeCompleted.Invoke();
     }
 
 
