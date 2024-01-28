@@ -17,7 +17,7 @@ public class Joke8Script : MonoBehaviour
 
     public Joke8Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "My wife left me."; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

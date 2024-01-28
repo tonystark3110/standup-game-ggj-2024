@@ -17,7 +17,7 @@ public class Joke18Script : MonoBehaviour
 
     public Joke18Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "I’m really lonely these days, since my friend went to hogwarts"; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

@@ -17,7 +17,7 @@ public class Joke5Script : MonoBehaviour
 
     public Joke5Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "I’m not great at making music puns. They’re not exactly my forte."; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

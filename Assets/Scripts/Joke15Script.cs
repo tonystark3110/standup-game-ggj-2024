@@ -17,7 +17,7 @@ public class Joke15Script : MonoBehaviour
 
     public Joke15Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "What did the barber do during the sack of Rome by the Vandals in 455 A.D.?"; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

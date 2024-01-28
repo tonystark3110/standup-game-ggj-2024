@@ -17,7 +17,7 @@ public class Joke13Script : MonoBehaviour
 
     public Joke13Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "Two guys fall onto a bar."; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

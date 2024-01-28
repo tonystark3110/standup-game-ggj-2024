@@ -17,7 +17,7 @@ public class Joke9Script : MonoBehaviour
 
     public Joke9Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "Skibidi toilet"; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

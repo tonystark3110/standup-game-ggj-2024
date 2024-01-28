@@ -17,7 +17,7 @@ public class Joke30Script : MonoBehaviour
 
     public Joke30Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "My dog just died"; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();

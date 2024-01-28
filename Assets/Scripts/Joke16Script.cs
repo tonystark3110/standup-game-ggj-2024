@@ -17,7 +17,7 @@ public class Joke16Script : MonoBehaviour
 
     public Joke16Script()
     {
-        ButtonText = "Text for button here"; //put the text for the prompt button here
+        ButtonText = "So, today is opposite day."; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();
