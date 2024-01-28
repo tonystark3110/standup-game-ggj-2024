@@ -13,6 +13,10 @@ public class Joke27Script : MonoBehaviour, JokeInterface
 
     public UnityEvent onJokeCompleted { get; private set; } //required
 
+    public AudioClip voicePrompt;
+
+    public AudioClip audienceResponse;
+
     //You can add any number of fields to this as needed.
 
     public Joke27Script()
@@ -42,17 +46,25 @@ public class Joke27Script : MonoBehaviour, JokeInterface
 
     IEnumerator TellJoke27()
     {
-        float timeToAnimate = 1f;
+        GameObject audioLocation = new GameObject("AudioObject");
+        audioLocation.transform.position = Camera.main.transform.position;
+        AudioSource audioSource = audioLocation.AddComponent<AudioSource>();
+        AudioSource backgroundAudioSource = audioLocation.AddComponent<AudioSource>();
 
-        float elapsedTime = 0f;
+        audioSource.clip = voicePrompt;
+        audioSource.Play();
 
-        while (elapsedTime < timeToAnimate)
-        {
+        yield return new WaitForSeconds(voicePrompt.length - 4f);
 
-            elapsedTime += Time.deltaTime;
+        backgroundAudioSource.clip = audienceResponse;
+        backgroundAudioSource.volume = 1f;
+        backgroundAudioSource.Play();
 
-            yield return null;
-        }
+        yield return new WaitForSeconds(audienceResponse.length);
+
+        Destroy(audioLocation, 0);
+
+        yield return null;
 
         Debug.Log("Animation completed");
 

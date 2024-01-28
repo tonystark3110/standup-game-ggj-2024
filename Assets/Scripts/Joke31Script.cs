@@ -13,6 +13,8 @@ public class Joke31Script : MonoBehaviour, JokeInterface
 
     public UnityEvent onJokeCompleted { get; private set; } //required
 
+    public AudioClip voicePrompt;
+
     //You can add any number of fields to this as needed.
 
     public Joke31Script()
@@ -42,17 +44,14 @@ public class Joke31Script : MonoBehaviour, JokeInterface
 
     IEnumerator TellJoke31()
     {
-        float timeToAnimate = 1f;
+        GameObject audioLocation = new GameObject("AudioObject");
+        audioLocation.transform.position = Camera.main.transform.position;
+        AudioSource audioSource = audioLocation.AddComponent<AudioSource>();
+        audioSource.clip = voicePrompt;
+        audioSource.Play();
+        Destroy(audioLocation, voicePrompt.length);
 
-        float elapsedTime = 0f;
-
-        while (elapsedTime < timeToAnimate)
-        {
-
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
+        yield return null;
 
         Debug.Log("Animation completed");
 

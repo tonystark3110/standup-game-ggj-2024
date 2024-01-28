@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd688f8eafbc8d49bdc7ecd3e3eb53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: a0ed79039cb18b64b92337c74cd484a5, type: 3}
 --- !u!1 &196832564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,6 +1390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a41ee092c77954c866e218947aabce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: 50db92c35c5f9654e8cd93e8aab972e4, type: 3}
+  voiceResponse: {fileID: 8300000, guid: acd55480429483741a7893cc6181529c, type: 3}
+  audienceResponse: {fileID: 8300000, guid: 357312a1bbdd493478477ae5c61219ff, type: 3}
 --- !u!1 &782814524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,6 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3dff1e029cc284399665d2a0d3e626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: 86f06f831889ecd4cb8333c0dde355e0, type: 3}
 --- !u!1 &787574829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,6 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c483a25e50186df43aec5583b1ce4c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: e96157d1fcfdbd64388c4c0340d138e6, type: 3}
 --- !u!1 &1159349154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5853daf98435f504d831514a87f8108b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: 389beed5e2374274e9e2e4eaff49c48b, type: 3}
+  voiceResponse: {fileID: 8300000, guid: f2c8ab62d9e717b49b80d8875f60ff98, type: 3}
+  tragicMusic: {fileID: 8300000, guid: 64ecf15ba70f46345833232886888ea7, type: 3}
 --- !u!1 &1778767202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,6 +2117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0187c932188c2d743903b8a2dfc50bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: 7aacd175c39efe14eb0266cf02a37591, type: 3}
 --- !u!1 &1791144782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9f6c8d460616d48b5913a42aeb0961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: 68a820e5687a61c4fac4d7faf5dffe78, type: 3}
+  audienceResponse: {fileID: 8300000, guid: 357312a1bbdd493478477ae5c61219ff, type: 3}
 --- !u!1 &1815315309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,6 +2370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004902b4cdf023a4aa021c8816fc096f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voicePrompt: {fileID: 8300000, guid: 40078e673725d564aaa3601fbd86440f, type: 3}
 --- !u!114 &1947424848 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2076233653224922430, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
