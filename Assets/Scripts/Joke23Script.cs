@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Joke23Script : MonoBehaviour
+public class Joke23Script : MonoBehaviour, JokeInterface
 {
     public string ButtonText { get; private set; } //required
 

@@ -2138,6 +2138,35 @@ MonoBehaviour:
   jokeObjects:
   - {fileID: 623272613}
   - {fileID: 868826459}
+  - {fileID: 507850553}
+  - {fileID: 221105867}
+  - {fileID: 687846792}
+  - {fileID: 1997498935}
+  - {fileID: 941976540}
+  - {fileID: 1216192853}
+  - {fileID: 744390176}
+  - {fileID: 125371276}
+  - {fileID: 1815315309}
+  - {fileID: 543725043}
+  - {fileID: 8745250}
+  - {fileID: 1342661851}
+  - {fileID: 356197766}
+  - {fileID: 386328936}
+  - {fileID: 196832564}
+  - {fileID: 480979536}
+  - {fileID: 116431343}
+  - {fileID: 314690591}
+  - {fileID: 1159349154}
+  - {fileID: 899021443}
+  - {fileID: 766976602}
+  - {fileID: 1385214853}
+  - {fileID: 985221315}
+  - {fileID: 159524616}
+  - {fileID: 1791144782}
+  - {fileID: 782814524}
+  - {fileID: 1409031821}
+  - {fileID: 1936857636}
+  - {fileID: 1778767202}
   animations: []
   buttonPrefab: {fileID: 1947424848}
   minNumJokesPerRound: 2
