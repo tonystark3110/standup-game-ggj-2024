@@ -13,6 +13,13 @@ public class Joke4Script : MonoBehaviour, JokeInterface
 
     public UnityEvent onJokeCompleted { get; private set; } //required
 
+    [Header("Wait times")]
+    public float waitForJoke = 4f;
+    public float waitForChair = 2f;
+
+    public AudioSource joke4Source;
+    public AudioSource chairSource;
+
     //You can add any number of fields to this as needed.
 
     public Joke4Script()
@@ -24,6 +31,11 @@ public class Joke4Script : MonoBehaviour, JokeInterface
         onJokeCompleted = new UnityEvent();
     }
 
+    void Start()
+    {
+        //run();
+    }
+
     //function that will run when the button for the joke is clicked
     public void run()
     {
@@ -31,31 +43,26 @@ public class Joke4Script : MonoBehaviour, JokeInterface
         StartCoroutine(Joke4Sequence());
     }
 
+    
+
     IEnumerator Joke4Sequence()
     {
-        Debug.Log("tell the joke");
 
         yield return StartCoroutine(TellJoke4());
 
-        Debug.Log("Joke 4 is completed");
     }
 
     IEnumerator TellJoke4()
     {
-        float timeToAnimate = 1f;
 
-        float elapsedTime = 0f;
+        joke4Source.Play();
 
-        while (elapsedTime < timeToAnimate)
-        {
+        yield return new WaitForSeconds(waitForJoke);
 
-            elapsedTime += Time.deltaTime;
+        chairSource.Play();
 
-            yield return null;
-        }
-
-        Debug.Log("Animation completed");
-
+        yield return new WaitForSeconds(waitForChair);
+        
         onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
     }
 }

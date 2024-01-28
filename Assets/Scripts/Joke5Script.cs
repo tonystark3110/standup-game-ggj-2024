@@ -15,13 +15,25 @@ public class Joke5Script : MonoBehaviour, JokeInterface
 
     //You can add any number of fields to this as needed.
 
+    [Header("Wait times")]
+    public float forteWait = 5f;
+    public float sadViolinWait = 3f;
+
+    public AudioSource forteSource;
+    public AudioSource violinSource;
+
     public Joke5Script()
     {
-        ButtonText = "I’m not great at making music puns. They’re not exactly my forte."; //put the text for the prompt button here
+        ButtonText = "I?m not great at making music puns. They?re not exactly my forte."; //put the text for the prompt button here
         OccurrenceWeight = 0; //customize the rarity of the joke occurred (less means rarer)
 
         onJokeStarted = new UnityEvent();
         onJokeCompleted = new UnityEvent();
+    }
+
+    void Start()
+    {
+        //run();
     }
 
     //function that will run when the button for the joke is clicked
@@ -33,28 +45,22 @@ public class Joke5Script : MonoBehaviour, JokeInterface
 
     IEnumerator Joke5Sequence()
     {
-        Debug.Log("tell the joke");
+
+        
 
         yield return StartCoroutine(TellJoke5());
 
-        Debug.Log("Joke 5 is completed");
     }
 
     IEnumerator TellJoke5()
     {
-        float timeToAnimate = 1f;
+        forteSource.Play();
 
-        float elapsedTime = 0f;
+        yield return new WaitForSeconds(forteWait);
 
-        while (elapsedTime < timeToAnimate)
-        {
+        violinSource.Play();
 
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        Debug.Log("Animation completed");
+        yield return new WaitForSeconds(sadViolinWait);
 
         onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
     }

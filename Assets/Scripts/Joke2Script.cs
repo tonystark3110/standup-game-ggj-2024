@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Joke2Script : MonoBehaviour, JokeInterface
 {
     public string ButtonText { get; private set; }
@@ -13,12 +14,23 @@ public class Joke2Script : MonoBehaviour, JokeInterface
 
     public UnityEvent onJokeCompleted { get; private set; }
 
-
     public GameObject thing;
+
+    [Header("wait times")]
+    public float waitVolunteerLine = 6f;
+    public float waitNeverMind = 3f;
+
+    public AudioSource joke2Source;
+    public AudioSource joke2Response;
+
+    private void Start()
+    {
+        //run();
+    }
 
     public Joke2Script()
     {
-        ButtonText = "I’m gonna need a volunteer for this one.";
+        ButtonText = "I?m gonna need a volunteer for this one.";
         OccurrenceWeight = 3;
 
         onJokeStarted = new UnityEvent();
@@ -31,46 +43,28 @@ public class Joke2Script : MonoBehaviour, JokeInterface
 
         onJokeStarted.Invoke();
 
-        Debug.Log("Joke2 is in fact funnny");
-
         StartCoroutine(Joke2Sequence());
-
 
     }
 
     IEnumerator Joke2Sequence()
     {
-        Debug.Log("tell the joke");
 
         yield return StartCoroutine(TellJoke2());
 
-        Debug.Log("Joke 2 is completed");
     }
 
     IEnumerator TellJoke2()
     {
+        //play audio of "i'm gonna need volunteer"
+        joke2Source.Play();
 
-        Vector3 startPosition = new Vector3(68.8099976f, 21.0326958f, 38.8139725f);
+        yield return new WaitForSeconds(6);
 
-        Vector3 endPosition = new Vector3(-85.5100021f, -4.04212952f, -16.9272423f);
-
-
-        float timeToAnimate = 1f;
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < timeToAnimate)
-        {
-            thing.transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / timeToAnimate);
-
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        thing.transform.position = endPosition;
-
-        Debug.Log("Animation completed");
+        //play audio "never mind then"
+        joke2Response.Play();
+        yield return new WaitForSeconds(3);
+        
 
         onJokeCompleted.Invoke();
     }

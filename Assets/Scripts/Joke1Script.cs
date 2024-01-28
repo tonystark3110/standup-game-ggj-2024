@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
 public class Joke1Script : MonoBehaviour, JokeInterface
 {
 
@@ -19,6 +18,12 @@ public class Joke1Script : MonoBehaviour, JokeInterface
     public UnityEvent onJokeCompleted { get; private set; }
 
 
+    [Header("Wait times")]
+    public float waitForESound = 5f;
+
+    public AudioSource eSource;
+
+
     public Joke1Script()
     {
         ButtonText = "E";
@@ -28,13 +33,16 @@ public class Joke1Script : MonoBehaviour, JokeInterface
         onJokeCompleted = new UnityEvent();
     }
 
+    void Start()
+    {
+        //run();
+    }
+
 
     public void run()
     {
 
         onJokeStarted.Invoke();
-
-        Debug.Log("Joke1 is NOT funnny");
 
         StartCoroutine(Joke1Sequence());
 
@@ -42,31 +50,22 @@ public class Joke1Script : MonoBehaviour, JokeInterface
 
     IEnumerator Joke1Sequence()
     {
-        Debug.Log("tell the joke");
 
+        
         yield return StartCoroutine(TellJoke1());
 
-        Debug.Log("Joke 1 is completed");
     }
 
     IEnumerator TellJoke1()
     {
-        //should bass boost now
 
-        float timeToAnimate = 1f;
+        //play E sound
+        eSource.Play();
 
-        float elapsedTime = 0f;
-
-        while (elapsedTime < timeToAnimate)
-        {
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        Debug.Log("Animation completed");
+        yield return new WaitForSeconds(5); //or however long the audio is
 
         onJokeCompleted.Invoke();
 
+        yield return null;
     }
 }

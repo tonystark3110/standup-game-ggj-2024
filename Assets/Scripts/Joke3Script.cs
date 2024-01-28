@@ -13,6 +13,15 @@ public class Joke3Script : MonoBehaviour, JokeInterface
 
     public UnityEvent onJokeCompleted { get; private set; } //required
 
+    [Header("You know what's crazy?")]
+    public float youKnowWhatsCrazyWait = 3f;
+    public float goCrazyFadeIn = 3f;
+    public float goCrazyWait = 12f;
+
+    public AudioSource crazySource;
+    public AudioSource crazyMusic;
+
+
     //You can add any number of fields to this as needed.
 
     public Joke3Script()
@@ -24,6 +33,12 @@ public class Joke3Script : MonoBehaviour, JokeInterface
         onJokeCompleted = new UnityEvent();
     }
 
+    //for testing
+    void Start()
+    {
+        //run();
+    }
+
     //function that will run when the button for the joke is clicked
     public void run()
     {
@@ -33,28 +48,35 @@ public class Joke3Script : MonoBehaviour, JokeInterface
 
     IEnumerator Joke3Sequence()
     {
-        Debug.Log("tell the joke");
 
         yield return StartCoroutine(TellJoke3());
 
-        Debug.Log("Joke 3 is completed");
     }
 
     IEnumerator TellJoke3()
     {
-        float timeToAnimate = 1f;
+        //play audio "You know what's crazy?"
+        crazySource.Play();
 
-        float elapsedTime = 0f;
+        yield return new WaitForSeconds(youKnowWhatsCrazyWait);
 
-        while (elapsedTime < timeToAnimate)
+        //play audio of going crazy, play video of going crazy
+        crazyMusic.Play();
+
+        crazyMusic.volume = 0f;
+        float timeStamp = 0f;
+        while (timeStamp < goCrazyFadeIn)
         {
-
-            elapsedTime += Time.deltaTime;
-
+            crazyMusic.volume = (timeStamp / goCrazyFadeIn) * 0.8f;
+            timeStamp += Time.deltaTime;
             yield return null;
         }
 
-        Debug.Log("Animation completed");
+        //any programming of the player going crazy
+
+        yield return new WaitForSeconds(goCrazyWait);
+
+        crazyMusic.Stop();
 
         onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
     }

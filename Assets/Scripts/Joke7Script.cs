@@ -15,6 +15,13 @@ public class Joke7Script : MonoBehaviour, JokeInterface
 
     //You can add any number of fields to this as needed.
 
+    [Header("Wait times")]
+    public float joke7Wait = 5f;
+    public float leaveWait = 6f;
+
+    public AudioSource joke7Source;
+    public AudioSource leaveSource;
+
     public Joke7Script()
     {
         ButtonText = "How about we get someone from the crowd"; //put the text for the prompt button here
@@ -22,6 +29,11 @@ public class Joke7Script : MonoBehaviour, JokeInterface
 
         onJokeStarted = new UnityEvent();
         onJokeCompleted = new UnityEvent();
+    }
+
+    void Start()
+    {
+        run();
     }
 
     //function that will run when the button for the joke is clicked
@@ -33,28 +45,20 @@ public class Joke7Script : MonoBehaviour, JokeInterface
 
     IEnumerator Joke7Sequence()
     {
-        Debug.Log("tell the joke");
 
         yield return StartCoroutine(TellJoke7());
 
-        Debug.Log("Joke 7 is completed");
     }
 
     IEnumerator TellJoke7()
     {
-        float timeToAnimate = 1f;
+        joke7Source.Play();
 
-        float elapsedTime = 0f;
+        yield return new WaitForSeconds(joke7Wait);
 
-        while (elapsedTime < timeToAnimate)
-        {
+        leaveSource.Play();
 
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        Debug.Log("Animation completed");
+        yield return new WaitForSeconds(leaveWait);
 
         onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
     }
