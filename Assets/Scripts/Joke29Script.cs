@@ -13,6 +13,12 @@ public class Joke29Script : MonoBehaviour, JokeInterface
 
     public UnityEvent onJokeCompleted { get; private set; } //required
 
+    public AudioClip voicePrompt;
+
+    public AudioClip voiceResponse;
+
+    public AudioClip tragicMusic;
+
     //You can add any number of fields to this as needed.
 
     public Joke29Script()
@@ -42,17 +48,55 @@ public class Joke29Script : MonoBehaviour, JokeInterface
 
     IEnumerator TellJoke29()
     {
-        float timeToAnimate = 1f;
+        GameObject audioLocation = new GameObject("AudioObject");
+        audioLocation.transform.position = Camera.main.transform.position;
+        AudioSource audioSource = audioLocation.AddComponent<AudioSource>();
+        AudioSource backgroundAudioSource = audioLocation.AddComponent<AudioSource>();
 
+        audioSource.clip = voicePrompt;
+        audioSource.Play();
+
+        backgroundAudioSource.clip = tragicMusic;
+        backgroundAudioSource.volume = 0;
+        backgroundAudioSource.Play();
+
+        float timeToAnimate = 5f;
         float elapsedTime = 0f;
 
         while (elapsedTime < timeToAnimate)
         {
 
             elapsedTime += Time.deltaTime;
+            backgroundAudioSource.volume += (0.1f - backgroundAudioSource.volume) / 2000;
 
             yield return null;
         }
+
+        yield return new WaitForSeconds(voicePrompt.length - 2 * timeToAnimate - 3.2f);
+
+        elapsedTime = 0f;
+
+        while (elapsedTime < timeToAnimate)
+        {
+
+            elapsedTime += Time.deltaTime;
+            backgroundAudioSource.volume += -backgroundAudioSource.volume / 2000;
+
+            yield return null;
+        }
+
+        backgroundAudioSource.volume = 0;
+
+        yield return new WaitForSeconds(3);
+
+        backgroundAudioSource.volume = 0.15f;
+
+        audioSource.clip = voiceResponse;
+        audioSource.Play();
+        yield return new WaitForSeconds(voiceResponse.length);
+        Destroy(audioLocation, 0);
+
+        yield return null;
 
         Debug.Log("Animation completed");
 
