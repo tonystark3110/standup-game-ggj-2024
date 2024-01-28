@@ -19,7 +19,6 @@ public class CharacterAnimation : MonoBehaviour
     void Awake()
     {
         instance = this;
-
         indexMapping = new Dictionary<AnimationActions, int>();
         foreach (ActionToIndexMapping actionMappings in actionMappings)
         {

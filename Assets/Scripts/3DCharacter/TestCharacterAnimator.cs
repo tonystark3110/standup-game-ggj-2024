@@ -9,6 +9,7 @@ public class TestCharacterAnimator : MonoBehaviour
     void Start()
     {
         animator = GetComponent<CharacterAnimation>();
+        animator.StartAct(CharacterAnimation.AnimationActions.NoteReading);
     }
 
     // Update is called once per frame
