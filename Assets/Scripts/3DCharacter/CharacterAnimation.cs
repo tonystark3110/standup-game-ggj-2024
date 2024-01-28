@@ -16,7 +16,7 @@ public class CharacterAnimation : MonoBehaviour
     private Dictionary<AnimationActions, int> indexMapping;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
 
