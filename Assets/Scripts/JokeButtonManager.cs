@@ -124,6 +124,7 @@ public class JokeButtonManager : MonoBehaviour
         //instantiate the button
         Button myButtonInstance = Instantiate(buttonPrefab, new Vector3(randomX, randomY, 0f), Quaternion.identity);
 
+        //makes the button a child of the canvas
         myButtonInstance.transform.SetParent(canvasRect.transform, false);
 
         //Debug.Log("button text: " + joke.ButtonText);
