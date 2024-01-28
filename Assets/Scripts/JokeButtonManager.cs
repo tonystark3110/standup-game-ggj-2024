@@ -9,7 +9,7 @@ using TMPro;
 public class JokeButtonManager : MonoBehaviour
 {
 
-    public JokeInterface[] jokes;
+    public GameObject[] jokeObjects;
 
     public AnimationClip[] animations;
 
@@ -20,8 +20,6 @@ public class JokeButtonManager : MonoBehaviour
 
     public Canvas canvas;
 
-    private GameObject[] jokeObjects;
-
     private List<int> alreadyPickedIdx;
 
     // Start is called before the first frame update
@@ -29,10 +27,6 @@ public class JokeButtonManager : MonoBehaviour
     {
 
         alreadyPickedIdx = new List<int>();
-
-        //In order for this code to recognize and process a joke, the joke script must be
-        //located within an object that is tagged "Joke"
-        jokeObjects = GameObject.FindGameObjectsWithTag("Joke");
 
 
         //add the joke started and ended events as listeners.

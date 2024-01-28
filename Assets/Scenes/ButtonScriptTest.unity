@@ -797,9 +797,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6ae4dcdc84a4fe9b4169db876b2820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jokeObjects:
+  - {fileID: 623272613}
+  - {fileID: 868826459}
   animations: []
   buttonPrefab: {fileID: 1947424848}
-  numJokesPerRound: 2
+  minNumJokesPerRound: 2
+  maxNumJokesPerRound: 5
   canvas: {fileID: 787574832}
 --- !u!1001 &5388618706155688826
 PrefabInstance:
@@ -934,7 +938,7 @@ SceneRoots:
   - {fileID: 1902126167}
   - {fileID: 935157978}
   - {fileID: 623272615}
+  - {fileID: 868826461}
   - {fileID: 2036982745}
   - {fileID: 787574833}
   - {fileID: 5388618706155688826}
-  - {fileID: 868826461}
