@@ -69,6 +69,14 @@ public class JokeButtonManager : MonoBehaviour
         }
     }
 
+    public void createRandomJokeButton() {
+        int randomIndex = pickRandomJoke();
+
+        Button jokeButton = createJokeButton(jokeObjects[randomIndex]);
+
+        Animator buttonAnimator = jokeButton.GetComponent<Animator>();
+    }
+
 
     /**
      * Returns a random joke object from the list of jokes. If all jokes are used up, it will reuse a joke.
@@ -125,6 +133,9 @@ public class JokeButtonManager : MonoBehaviour
         JokeMovement jokeMover = myButtonInstance.gameObject.GetComponent<JokeMovement>();
         jokeMover.speed = UnityEngine.Random.Range(100f, 200f);
         jokeMover.trajectory = (-spawnLocation + new Vector3(UnityEngine.Random.Range(-200f, 200f), UnityEngine.Random.Range(-200f, 200f), 0f)).normalized;
+        jokeMover.killDistance = spawnRadius + 100f;
+        jokeMover.originPoint = new Vector3(canvasWidth / 2f, canvasHeight / 2f, 0f);
+        jokeMover.manager = this;
         
 
         /*

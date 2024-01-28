@@ -2174,8 +2174,8 @@ MonoBehaviour:
   - {fileID: 1778767202}
   animations: []
   buttonPrefab: {fileID: 1947424848}
-  minNumJokesPerRound: 8
-  maxNumJokesPerRound: 10
+  minNumJokesPerRound: 5
+  maxNumJokesPerRound: 5
   canvas: {fileID: 787574832}
 --- !u!1001 &5388618706155688826
 PrefabInstance:
@@ -2233,13 +2233,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2597831421377247847, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597831421377247847, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8653c057680a0423991cd6534cfe73da, type: 3}
     - target: {fileID: 3196013519915721129, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
       propertyPath: m_Name
       value: JokeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3860742737686884785, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -30
+      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 3860742737686884785, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2247,7 +2255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860742737686884785, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3860742737686884785, guid: 8cb508e5b70dc4f68bdc0b101b4fe4c0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2355,6 +2363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trajectory: {x: 0, y: 0, z: 0}
   speed: 0
+  killDistance: Infinity
+  originPoint: {x: 0, y: 0, z: 0}
+  manager: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
