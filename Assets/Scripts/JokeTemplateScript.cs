@@ -78,7 +78,7 @@ public class JokeTemplateScript : MonoBehaviour, JokeInterface
          *  
          *  yield return StartCoroutine(MyCoroutine());
          *  
-         *  onJokeEnded.Invoke();
+         *  onJokeCompleted.Invoke();
          * 
          * }
          * 
