@@ -15,7 +15,10 @@ public class JokeButtonManager : MonoBehaviour
 
     public Button buttonPrefab;
 
-    public int numJokesPerRound = 2;
+    public int minNumJokesPerRound = 2;
+    public int maxNumJokesPerRound = 5;
+
+    public Canvas canvas;
 
     private GameObject[] jokeObjects;
 
@@ -52,16 +55,16 @@ public class JokeButtonManager : MonoBehaviour
     private void displayJokes()
     {
         //creates the appropriate number of buttons and animates them.
-        for (int i = 0; i < numJokesPerRound; i++)
+        for (int i = 0; i < UnityEngine.Random.Range(minNumJokesPerRound, maxNumJokesPerRound + 1); i++)
         {
-
-            //TODO: figure out how to put each button in separate places on the canvas.
 
             int randomIndex = pickRandomJoke();
 
             Button jokeButton = createJokeButton(jokeObjects[randomIndex]);
 
             Animator buttonAnimator = jokeButton.GetComponent<Animator>();
+
+
 
             //for animating the buttons, uncommment this when animation clips are put in
 
@@ -107,12 +110,23 @@ public class JokeButtonManager : MonoBehaviour
         //get the JokeInterface script component from the given joke game object
         JokeInterface joke = jokeObject.GetComponent<JokeInterface>();
 
-        Debug.Log("joke: " + joke);
+        //Debug.Log("joke: " + joke);
+
+        //generate a random XY point on the canvas to spawn the button
+        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+
+        float canvasWidth = canvasRect.rect.width;
+        float canvasHeight = canvasRect.rect.height;
+
+        float randomX = UnityEngine.Random.Range(-canvasWidth / 2f, canvasWidth / 2f);
+        float randomY = UnityEngine.Random.Range(-canvasHeight / 2f, canvasHeight / 2f);
 
         //instantiate the button
-        Button myButtonInstance = Instantiate(buttonPrefab, transform);
+        Button myButtonInstance = Instantiate(buttonPrefab, new Vector3(randomX, randomY, 0f), Quaternion.identity);
 
-        Debug.Log("button text: " + joke.ButtonText);
+        myButtonInstance.transform.SetParent(canvasRect.transform, false);
+
+        //Debug.Log("button text: " + joke.ButtonText);
         //Debug.Log("text child: " + myButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text);
 
         //change the text of the button
@@ -136,7 +150,7 @@ public class JokeButtonManager : MonoBehaviour
     void HandleJokeStarted()
     {
         Debug.Log("Joke started handled");
-        foreach (Transform child in this.transform)
+        foreach (Transform child in canvas.transform)
         {
             Destroy(child.gameObject);
         }
