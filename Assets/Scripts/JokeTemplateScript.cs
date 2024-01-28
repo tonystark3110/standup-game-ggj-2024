@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 //change name of JokeTemplateScript to whatever your script's name is called
 //this script should inherit from JokeInterface
@@ -28,6 +29,36 @@ public class JokeTemplateScript : MonoBehaviour, JokeInterface
     public void run()
     {
         onJokeStarted.Invoke(); //required - this method should be the first method in run()
+        StartCoroutine(JokeNumSequence());
+    }
+
+    IEnumerator JokeNumSequence()
+    {
+        Debug.Log("tell the joke");
+
+        yield return StartCoroutine(TellJokeNum());
+
+        Debug.Log("Joke # is completed");
+    }
+
+    IEnumerator TellJokeNum()
+    {
+        float timeToAnimate = 1f;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < timeToAnimate)
+        {
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        Debug.Log("Animation completed");
+
+        onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
+    }
 
         /*
          * Write the code for your sequence of joke events here.
@@ -72,7 +103,6 @@ public class JokeTemplateScript : MonoBehaviour, JokeInterface
          * 
          */
 
-        onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
+        
             //the joke has been said and the audience reacts (or doesn't react)
-    }
 }

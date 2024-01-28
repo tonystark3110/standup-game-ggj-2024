@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Joke2TestScript : MonoBehaviour, JokeInterface
+public class Joke2Script : MonoBehaviour, JokeInterface
 {
     public string ButtonText { get; private set; }
 
@@ -16,9 +16,9 @@ public class Joke2TestScript : MonoBehaviour, JokeInterface
 
     public GameObject thing;
 
-    public Joke2TestScript()
+    public Joke2Script()
     {
-        ButtonText = "lol";
+        ButtonText = "I’m gonna need a volunteer for this one.";
         OccurrenceWeight = 3;
 
         onJokeStarted = new UnityEvent();
@@ -35,7 +35,7 @@ public class Joke2TestScript : MonoBehaviour, JokeInterface
 
         StartCoroutine(Joke2Sequence());
 
-        
+
     }
 
     IEnumerator Joke2Sequence()
@@ -73,19 +73,5 @@ public class Joke2TestScript : MonoBehaviour, JokeInterface
         Debug.Log("Animation completed");
 
         onJokeCompleted.Invoke();
-    }
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
