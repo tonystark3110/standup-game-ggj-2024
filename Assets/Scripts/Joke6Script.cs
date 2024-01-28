@@ -15,6 +15,14 @@ public class Joke6Script : MonoBehaviour, JokeInterface
 
     //You can add any number of fields to this as needed.
 
+    [Header("Wait times")]
+    public float joke6Wait = 6f;
+    public float comicSansWait = 3f;
+
+    public AudioSource joke6Source;
+
+    public GameObject text;
+
     public Joke6Script()
     {
         ButtonText = "My favorite font is Comic Sans."; //put the text for the prompt button here
@@ -22,6 +30,12 @@ public class Joke6Script : MonoBehaviour, JokeInterface
 
         onJokeStarted = new UnityEvent();
         onJokeCompleted = new UnityEvent();
+    }
+
+    void Start()
+    {
+        //run();
+        text.SetActive(false);
     }
 
     //function that will run when the button for the joke is clicked
@@ -33,28 +47,22 @@ public class Joke6Script : MonoBehaviour, JokeInterface
 
     IEnumerator Joke6Sequence()
     {
-        Debug.Log("tell the joke");
 
         yield return StartCoroutine(TellJoke6());
 
-        Debug.Log("Joke 6 is completed");
     }
 
     IEnumerator TellJoke6()
     {
-        float timeToAnimate = 1f;
+        joke6Source.Play();
 
-        float elapsedTime = 0f;
+        yield return new WaitForSeconds(joke6Wait);
 
-        while (elapsedTime < timeToAnimate)
-        {
+        text.SetActive(true);
 
-            elapsedTime += Time.deltaTime;
+        yield return new WaitForSeconds(comicSansWait);
 
-            yield return null;
-        }
-
-        Debug.Log("Animation completed");
+        text.SetActive(false);
 
         onJokeCompleted.Invoke(); //required - this method should be called at the of the joke, after
     }
