@@ -142,15 +142,11 @@ public class JokeButtonManager : MonoBehaviour
         return myButtonInstance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void HandleJokeStarted()
     {
         Debug.Log("Joke started handled");
+
+        //gets rid of all buttons on the screen when the joke starts
         foreach (Transform child in canvas.transform)
         {
             Destroy(child.gameObject);
@@ -161,6 +157,8 @@ public class JokeButtonManager : MonoBehaviour
     void HandleJokeCompleted()
     {
         Debug.Log("Joke ended handled");
+
+        //displays new jokes
         displayJokes();
     }
 
