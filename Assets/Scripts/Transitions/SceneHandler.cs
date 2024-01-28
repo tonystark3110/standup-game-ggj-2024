@@ -20,6 +20,18 @@ public class SceneHandler : MonoBehaviour
     {
         StartCoroutine(_Transition(index));
     }
+    protected void Transition(string name, float time)
+    {
+        StartCoroutine(_Transition(name, time));
+    }
+    protected IEnumerator _Transition(string name, float time)
+    {
+        
+        yield return new WaitForSeconds(time-1);
+        transitionerPrefab.GetComponentInChildren<Animator>().SetTrigger("Exit");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(name);
+    }
     private IEnumerator _Transition(int index)
     {
         transitionerPrefab.GetComponentInChildren<Animator>().SetTrigger("Exit");
@@ -45,5 +57,10 @@ public class SceneHandler : MonoBehaviour
     public static void TransitionTo(string  sceneName)
     {
         instance.Transition(sceneName);
+    }
+
+    public static void TransitionTo(string sceneName, float time)
+    {
+        instance.Transition(sceneName, time);
     }
 }
